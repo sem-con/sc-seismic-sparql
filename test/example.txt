@@ -1,1 +1,1 @@
-docker run -d --name sc-sparql -p 4000:3000 -v $PWD/test/config:/config semcon/sc-base init.sh "https://vownyourdata.zamg.ac.at:9500/api/data?duration=1" "$(< test/init.trig)"
+docker run -d --name sc-sparql -p 4000:3000 -v $PWD/test/config:/config semcon/sc-sparql script/init.sh "https://vownyourdata.zamg.ac.at:9500/api/data?duration=10" "$(< test/init.trig)"

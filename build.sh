@@ -1,6 +1,6 @@
 #!/bin/bash
 
-CONTAINER="sc-seismic-sparql"
+CONTAINER="sc-sparql"
 REPOSITORY="semcon"
 
 # read commandline options
