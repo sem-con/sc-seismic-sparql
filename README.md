@@ -1,1 +1,1 @@
-# sc-seismic-sparql
+# sc-sparql
