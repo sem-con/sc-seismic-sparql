@@ -1,0 +1,26 @@
+
+<http://w3id.org/semcon/ns/ontology#DataModel> {
+  <http://w3id.org/semcon/ns/seismic#SeismicActivity> a <http://www.w3.org/2002/07/owl#Class> .
+
+  <http://w3id.org/semcon/ns/seismic#auth> a <http://www.w3.org/2002/07/owl#DatatypeProperty>;
+    <http://www.w3.org/2000/01/rdf-schema#range> <http://www.w3.org/2001/XMLSchema#string> .
+
+  <http://w3id.org/semcon/ns/seismic#lastUpdate> a <http://www.w3.org/2002/07/owl#DatatypeProperty>;
+    <http://www.w3.org/2000/01/rdf-schema#range> <http://www.w3.org/2001/XMLSchema#dateTime> .
+
+  <http://w3id.org/semcon/ns/seismic#magnitude> a <http://www.w3.org/2002/07/owl#DatatypeProperty>;
+    <http://www.w3.org/2000/01/rdf-schema#range> <http://www.w3.org/2001/XMLSchema#float> .
+
+  <http://w3id.org/semcon/ns/seismic#magnitudeType> a <http://www.w3.org/2002/07/owl#DatatypeProperty>;
+    <http://www.w3.org/2000/01/rdf-schema#range> <http://www.w3.org/2001/XMLSchema#string> .
+
+  <http://w3id.org/semcon/ns/seismic#sourceId> a <http://www.w3.org/2002/07/owl#DatatypeProperty>;
+    <http://www.w3.org/2000/01/rdf-schema#range> <http://www.w3.org/2001/XMLSchema#string> .
+
+  <http://w3id.org/semcon/ns/seismic#time> a <http://www.w3.org/2002/07/owl#DatatypeProperty>;
+    <http://www.w3.org/2000/01/rdf-schema#range> <http://www.w3.org/2001/XMLSchema#dateTime> .
+
+  <http://www.opengis.net/ont/geosparql#asWKT> a <http://www.w3.org/2002/07/owl#DatatypeProperty> .
+
+  <http://www.w3.org/2003/01/geo/wgs84_pos#alt> a <http://www.w3.org/2002/07/owl#DatatypeProperty> .
+}

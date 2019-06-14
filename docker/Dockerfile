@@ -96,11 +96,11 @@ RUN set -eux; \
 	java -version
 
 WORKDIR /usr/src/app
-COPY srv-rml/target/srv-rml-1.2.2-SNAPSHOT-jar-with-dependencies.jar .
+COPY srv-rml/target/srv-rml-1.3.0-SNAPSHOT-jar-with-dependencies.jar .
 COPY app app
 COPY config config
 COPY script script
 
 CMD ["./script/run.sh"]
 
-EXPOSE 3000 2806
+EXPOSE 3000
