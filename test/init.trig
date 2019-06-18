@@ -55,26 +55,12 @@
     :hasTag "zamg", "seismic" ;
     # data format - inspired from void
     :hasNativeSyntax <http://w3id.org/semcon/ns/ontology#JSON> ;
-    :hasDataLocationDescription "Earthquakes in Austria and worldwide provided by ZAMG";
-    :hasDataLocation <http://geoweb.zamg.ac.at/static/event/lastday.json>;
+    :hasDataLocationDescription "Earthquakes in Austria and worldwide provided by ZAMG through Semantic Containers";
+    :hasDataLocation <https://vownyourdata.zamg.ac.at:9500/api/data/>;
 
     # example data in plain string
     :hasExampleData """
-[
-  {
-    "lat": 47.6608,
-    "long": 15.9035,
-    "alt": -2.3789,
-    "magnitude": 0.6,
-    "magnitudeType": "ML",
-    "eventType": "-",
-    "auth": "ZAMG:seismoml",
-    "sourceId": 1826905,
-    "time": "2019-02-09T19:21:28.324Z",
-    "lastUpdate": "2019-02-11T11:00:00.566Z"
-  }
-]
-      """ .     
+    """ .     
 }
 
 #################################################################
