@@ -1,1 +1,15 @@
-docker run -d --name sc-sparql -p 4000:3000 semcon/sc-sparql script/init.sh "$(< test/init.trig)"
+docker run -d --name sparql -p 4000:3000 semcon/sc-sparql script/init.sh "$(< test/init.trig)"
+
+docker run -d --name mood_sparql -p 4200:3000 semcon/sc-sparql script/init.sh "$(< init_mood.trig)"
+
+# SPARQL Tutorial
+docker run -d --name sparql -p 4000:3000 -p 4040:3030 semcon/sc-sparql script/init.sh "$(< sparql.trig)"
+
+curl -H "Content-Type: application/json" -d "$(< seismic.json)" -X POST http://localhost:4000/api/data
+
+curl -s http://localhost:4000/api/data | jq
+
+curl -s 'http://localhost:4000/api/sparql/query?r=true&a=http://localhost:3000/api/data&q=SELECT%20%2A%20WHERE%20%7B%20%3Fa%20%3Fb%20%3Fc%7D%20LIMIT%2010' | jq
+
+
+curl http://localhost:4040/rdf/sparql?query=SELECT%20*%20WHERE%20%7B%20?a%20?b%20?c%7D%20LIMIT%2010 

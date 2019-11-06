@@ -1,0 +1,229 @@
+@prefix : <http://w3id.org/semcon/ns/ontology#> .
+@prefix scr: <http://w3id.org/semcon/resource/> .
+@prefix dc: <http://purl.org/dc/elements/1.1/> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix xml: <http://www.w3.org/XML/1998/namespace> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix w3c-format: <http://www.w3.org/ns/formats/> .
+@prefix foaf: <http://xmlns.com/foaf/0.1/> .
+@prefix svpr:  <http://www.specialprivacy.eu/vocabs/processing#> .
+@prefix svpu:  <http://www.specialprivacy.eu/vocabs/purposes#> .
+@prefix svd:   <http://www.specialprivacy.eu/vocabs/data#> .
+@prefix svdu:  <http://www.specialprivacy.eu/vocabs/duration#> .
+@prefix svl:   <http://www.specialprivacy.eu/vocabs/locations#> .
+@prefix svr:   <http://www.specialprivacy.eu/vocabs/recipients#> .
+@prefix spl:   <http://www.specialprivacy.eu/langs/usage-policy#> .
+@prefix sh: <http://www.w3.org/ns/shacl#> .
+# for data model
+@prefix scs: <http://w3id.org/semcon/ns/mood#> .
+# for mapping
+@prefix rr:     <http://www.w3.org/ns/r2rml#> .
+@prefix fnml:    <http://semweb.mmlab.be/ns/fnml#> .
+@prefix rml:    <http://semweb.mmlab.be/ns/rml#> .
+@prefix ql:     <http://semweb.mmlab.be/ns/ql#> .
+@prefix carml:  <http://carml.taxonic.com/carml/> .
+@prefix xsd:    <http://www.w3.org/2001/XMLSchema#> .
+@prefix dcterm: <http://purl.org/dc/terms/> .
+@prefix xes:    <http://semantics.id/ns/xes#> .
+@prefix owl:    <http://www.w3.org/2002/07/owl#> .
+@prefix rdfs:   <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix rdf:    <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix locn:   <http://www.w3.org/ns/locn#> .
+@prefix geo:    <http://www.opengis.net/ont/geosparql#> .
+@prefix func:   <http://semantics.id/ns/function#> .
+@prefix param:   <http://semantics.id/ns/parameter#> .
+@prefix fnml:    <http://semweb.mmlab.be/ns/fnml#> .
+@prefix fno:     <http://semweb.datasciencelab.be/ns/function#> .
+
+#################################################################
+#    NAMED GRAPH ==> :BaseConfigurations
+#################################################################
+:BaseConfiguration {
+
+  :ContainerConfigurationInstance rdf:type :ContainerConfiguration ;
+    # generic - dublin core
+    dc:title "Mood Data" ;
+    dc:description """ """ ;
+    dc:creator [
+      rdf:type foaf:Person ;
+      foaf:name "John Doe" ;
+      foaf:mbox <mailto:john@acme.org> ;
+    ] ;
+    :hasDataConfiguration :DataConfigurationInstance .
+    # :hasDataLayer scr:LayerSemantic ;   # NON-EDITABLE - assigned
+
+  :DataConfigurationInstance rdf:type :DataConfiguration ;  
+    # :isDataModelExist true ;        # NON-EDITABLE - assigned
+    # :isDataConstraintExist true ;     # NON-EDITABLE - assigned
+    # :isDataMappingExist false ;     # NON-EDITABLE - assigned
+    # :isUsagePolicyExist true ;      # NON-EDITABLE - assigned
+    # data - classifications
+    :hasTag "mood" ;
+    # data format - inspired from void
+    :hasNativeSyntax <http://w3id.org/semcon/ns/ontology#JSON> ;
+    :hasDataLocationDescription "mood data provided through Semantic Containers";
+    :hasDataLocation <https://vownyourdata.zamg.ac.at:9800/api/data/>;
+
+    # example data in plain string
+    :hasExampleData """
+    """ .     
+}
+
+#################################################################
+#    NAMED GRAPH ==> :UsagePolicies
+#################################################################
+:UsagePolicy {
+  <http://w3id.org/semcon/ns/ontology#ContainerPolicy> a <http://www.w3.org/2002/07/owl#Class>;
+    <http://www.w3.org/2002/07/owl#equivalentClass> [
+    a <http://www.w3.org/2002/07/owl#Class>;
+    <http://www.w3.org/2002/07/owl#intersectionOf> ([
+    a <http://www.w3.org/2002/07/owl#Restriction>;
+    <http://www.w3.org/2002/07/owl#onProperty> <http://www.specialprivacy.eu/langs/usage-policy#hasData>;
+    <http://www.w3.org/2002/07/owl#someValuesFrom> [<http://www.w3.org/2002/07/owl#unionOf> (<http://www.specialprivacy.eu/vocabs/data#EarthObservation>)]
+    ] [
+    a <http://www.w3.org/2002/07/owl#Restriction>;
+    <http://www.w3.org/2002/07/owl#onProperty> <http://www.specialprivacy.eu/langs/usage-policy#hasRecipient>;
+    <http://www.w3.org/2002/07/owl#someValuesFrom> <http://www.specialprivacy.eu/langs/usage-policy#AnyRecipient>
+    ] [
+    a <http://www.w3.org/2002/07/owl#Restriction>;
+    <http://www.w3.org/2002/07/owl#onProperty> <http://www.specialprivacy.eu/langs/usage-policy#hasPurpose>;
+    <http://www.w3.org/2002/07/owl#someValuesFrom> <http://www.specialprivacy.eu/langs/usage-policy#AnyPurpose>
+    ] [
+    a <http://www.w3.org/2002/07/owl#Restriction>;
+    <http://www.w3.org/2002/07/owl#onProperty> <http://www.specialprivacy.eu/langs/usage-policy#hasProcessing>;
+    <http://www.w3.org/2002/07/owl#someValuesFrom> <http://www.specialprivacy.eu/langs/usage-policy#AnyProcessing>
+    ] [
+    a <http://www.w3.org/2002/07/owl#Restriction>;
+    <http://www.w3.org/2002/07/owl#onProperty> <http://www.specialprivacy.eu/langs/usage-policy#hasStorage>;
+    <http://www.w3.org/2002/07/owl#someValuesFrom> [<http://www.w3.org/2002/07/owl#intersectionOf> ([
+    a <http://www.w3.org/2002/07/owl#Restriction>;
+    <http://www.w3.org/2002/07/owl#onProperty> <http://www.specialprivacy.eu/langs/usage-policy#hasLocation>;
+    <http://www.w3.org/2002/07/owl#someValuesFrom> <http://www.specialprivacy.eu/langs/usage-policy#AnyLocation>
+    ] [
+    a <http://www.w3.org/2002/07/owl#Restriction>;
+    <http://www.w3.org/2002/07/owl#onProperty> <http://www.specialprivacy.eu/langs/usage-policy#hasDuration>;
+    <http://www.w3.org/2002/07/owl#someValuesFrom> <http://www.specialprivacy.eu/vocabs/duration#StatedPurpose>
+    ])]
+    ])
+    ] .
+}
+  
+#################################################################
+#    NAMED GRAPH ==> :DataModels
+#################################################################
+:DataModel {
+
+    #################################################################
+    #    Data properties
+    #################################################################
+
+    ###  http://w3id.org/semcon/ns/mood#id
+    scs:id rdf:type owl:DatatypeProperty ;
+                rdfs:range xsd:long .
+
+
+    ###  http://w3id.org/semcon/ns/mood#timestamp
+    scs:timestamp rdf:type owl:DatatypeProperty ;
+               rdfs:range xsd:long .
+
+
+    ###  http://w3id.org/semcon/ns/mood#mood
+    scs:mood rdf:type owl:DatatypeProperty ;
+                   rdfs:range xsd:integer .
+
+}
+
+#################################################################
+#    NAMED GRAPH ==> :DataConstraints
+#################################################################
+:DataConstraint {
+    scs:MoodDataValidation 
+        a               sh:NodeShape ;
+        sh:closed       true ;
+        sh:description  "Mood Data Validation" ;
+        sh:name         "Mood Data Validation" ;
+        sh:property     [ sh:maxCount  1 ;
+                          sh:minCount  1 ;
+                          sh:path      rdf:type
+                        ] ;
+        sh:property     [ sh:maxCount  1 ;
+                          sh:minCount  1 ;
+                          sh:path      scs:id
+                        ] ;
+        sh:property     [ sh:maxCount  1 ;
+                          sh:minCount  1 ;
+                          sh:path      scs:timestamp
+                        ] ;
+        sh:property     [ sh:maxCount  1 ;
+                          sh:minCount  1 ;
+                          sh:path      scs:mood
+                        ] ;
+        sh:targetClass  scs:MoodActivity .
+
+}
+
+#################################################################
+#    NAMED GRAPH ==> :DataMappings (Future)
+#################################################################
+:DataMapping {
+<#trace> a rr:TriplesMap ;
+    rml:logicalSource [
+        rml:source [ a carml:Stream; ];
+        rml:referenceFormulation ql:JSONPath ;
+        rml:iterator "$.provision.content.[*]" ;
+    ];
+    rr:subjectMap [
+        rr:template "http://w3id.org/semcon/id/oyd-mood/{timestamp}";
+        rr:class :OydMood
+    ];
+    rr:predicateObjectMap [
+        rr:predicate :dateTime ;
+        rr:objectMap <#getTime> ;
+    ];
+    rr:predicateObjectMap [
+        rr:predicate :mood ;
+        rr:objectMap [
+            rml:reference "mood" ;
+            rr:datatype xsd:integer ;
+        ];
+    ];
+.
+
+<#getTime>
+    rr:termType rr:Literal ;
+    rr:datatype xsd:dateTime;
+    fnml:functionValue [
+        rr:subjectMap [
+            rr:template "http://w3id.org/semcon/id/oyd-mood/{timestamp}";
+        ];
+        rr:predicateObjectMap [
+            rr:predicate fno:executes;
+            rr:object func:timeConversion;
+        ];
+        rr:predicateObjectMap [
+            rr:predicate param:time;
+            rr:objectMap [
+                rml:reference "timestamp";
+                rr:datatype xsd:string;
+            ]
+        ];
+        rr:predicateObjectMap [
+            rr:predicate param:timeFormat;
+            rr:objectMap [
+                rr:template "seconds";
+                rr:datatype xsd:string;
+            ]
+        ];
+    ]
+.
+
+}
+
+#################################################################
+#    NAMED GRAPH ==> :UserFunctions - Hydra function definitions (Future)
+#################################################################
+:UserFunction {
+  
+}

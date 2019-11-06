@@ -22,15 +22,19 @@ Rails.application.routes.draw do
 			match 'data/plain',     to: 'stores#plain',           via: 'get'
 			match 'data/full',      to: 'stores#full',            via: 'get'
 			match 'data/provision', to: 'stores#provision',       via: 'get'
+			match 'data',           to: 'stores#write',           via: 'post'
 			match 'info',           to: 'infos#index',            via: 'get'
 			match 'log',            to: 'logs#index',             via: 'get'
 			match 'buy',            to: 'payments#buy',           via: 'post'
 			match 'paid',           to: 'payments#paid',          via: 'get'
 			match 'payments',       to: 'payments#payments',      via: 'get'
 
+			match 'sparql',         to: 'sparqls#raw',            via: 'get'
 			match 'sparql/status',  to: 'sparqls#status',         via: 'get'
 			match 'sparql/ontology',to: 'sparqls#ontology',       via: 'get'
 			match 'sparql/query',   to: 'sparqls#query',          via: 'get'
+			match 'sparql/query-p', to: 'sparqls#query_p',        via: 'post'
+
 		end
 	end
 	match '/oauth/applications'     => 'application#create_application',  via: 'post'

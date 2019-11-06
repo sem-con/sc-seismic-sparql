@@ -15,6 +15,10 @@ module Api
                 render json: HTTParty.get("http://localhost:2806/api/sparql/query?" + request.query_string).parsed_response,
                        status: 200
             end
+
+            def query_p
+
+            end
         end
     end
 end

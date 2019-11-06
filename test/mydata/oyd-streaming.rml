@@ -1,0 +1,53 @@
+@prefix rr:     <http://www.w3.org/ns/r2rml#> .
+@prefix rml:    <http://semweb.mmlab.be/ns/rml#> .
+@prefix ql:     <http://semweb.mmlab.be/ns/ql#> .
+@prefix carml:  <http://carml.taxonic.com/carml/> .
+@prefix xsd:    <http://www.w3.org/2001/XMLSchema#> .
+@prefix dcterm: <http://purl.org/dc/terms/> .
+@prefix xes:    <http://semantics.id/ns/xes#> .
+@prefix owl:    <http://www.w3.org/2002/07/owl#> .
+@prefix rdfs:   <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix rdf:    <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix locn:   <http://www.w3.org/ns/locn#> .
+@prefix geo:    <http://www.opengis.net/ont/geosparql#> .
+@prefix :       <http://w3id.org/semcon/ns/spotify-streaming#> .
+
+<#trace> a rr:TriplesMap ;
+    rml:logicalSource [
+        rml:source [ a carml:Stream; ];
+        rml:referenceFormulation ql:JSONPath ;
+        rml:iterator "$.provision.content.[*]" ;
+    ];
+    rr:subjectMap [
+        rr:template "http://w3id.org/semcon/id/spotify-streaming/{endTime}";
+        rr:class :SpotifyStreaming
+    ];
+    rr:predicateObjectMap [
+        rr:predicate :timestamp ;
+        rr:objectMap [
+            rml:reference "endTime" ;
+            rr:datatype xsd:string ;
+        ];
+    ];
+    rr:predicateObjectMap [
+        rr:predicate :artistName ;
+        rr:objectMap [
+            rml:reference "artistName" ;
+            rr:datatype xsd:integer ;
+        ];
+    ];
+    rr:predicateObjectMap [
+        rr:predicate :trackName ;
+        rr:objectMap [
+            rml:reference "trackName" ;
+            rr:datatype xsd:string ;
+        ];
+    ];
+    rr:predicateObjectMap [
+        rr:predicate :msPlayed ;
+        rr:objectMap [
+            rml:reference "msPlayed" ;
+            rr:datatype xsd:long ;
+        ];
+    ];
+.

@@ -2,6 +2,7 @@
 
 require 'rdf'
 require 'linkeddata'
+require 'httparty'
 
 SEMCON_ONTOLOGY = "http://w3id.org/semcon/ns/ontology#"
 
@@ -15,11 +16,19 @@ File.write('/usr/src/app/config/mapping.ttl', mapping.dump(:trig).strip.split("\
 
 ontology = nil
 init.each_graph{ |g| g.graph_name == SEMCON_ONTOLOGY + "DataModel" ? ontology = g : nil }
-File.write('/usr/src/app/config/ontology.ttl', ontology.dump(:trig).strip.split("\n")[1..-2].join("\n").strip)
+if ontology.nil?
+	File.write('/usr/src/app/config/ontology.ttl', "")
+else	
+	File.write('/usr/src/app/config/ontology.ttl', ontology.dump(:trig).strip.split("\n")[1..-2].join("\n").strip)
+end
 
 constraint = nil
 init.each_graph{ |g| g.graph_name == SEMCON_ONTOLOGY + "DataConstraint" ? constraint = g : nil }
-File.write('/usr/src/app/config/constraint.ttl', constraint.dump(:trig).strip.split("\n")[1..-2].join("\n").strip)
+if constraint.nil?
+	File.write('/usr/src/app/config/constraint.ttl', "")
+else
+	File.write('/usr/src/app/config/constraint.ttl', constraint.dump(:trig).strip.split("\n")[1..-2].join("\n").strip)
+end
 
 base_config = nil
 init.each_graph{ |g| g.graph_name == SEMCON_ONTOLOGY + "BaseConfiguration" ? base_config = g : nil }
