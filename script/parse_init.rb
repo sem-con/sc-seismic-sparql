@@ -6,6 +6,10 @@ require 'httparty'
 
 SEMCON_ONTOLOGY = "http://w3id.org/semcon/ns/ontology#"
 
+# file=File.open("test.trig")
+# init_input = file.readlines.join("")
+# file.close
+
 init_input = ARGV.pop
 init = RDF::Repository.new()
 init << RDF::Reader.for(:trig).new(init_input.to_s)

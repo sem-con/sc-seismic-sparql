@@ -96,7 +96,7 @@ RUN set -eux; \
 	java -version
 
 WORKDIR /usr/src/app
-COPY srv-rml/target/srv-rml-1.4.0-jar-with-dependencies.jar .
+COPY srv-rml/target/srv-rml-2.1.0-SNAPSHOT-jar-with-dependencies.jar .
 COPY app app
 COPY config config
 COPY script script
